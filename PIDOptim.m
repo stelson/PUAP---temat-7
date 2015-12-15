@@ -5,6 +5,6 @@ function y = PIDOptim(x)
     assignin('base','D',x(3));
     assignin('base','N',x(4));
     tic
-    [t,xx,yy] = sim('Model.slx', 10); 
+    [t,xx,yy] = sim('Model.slx', 50); 
     toc
     y = yy(end); 

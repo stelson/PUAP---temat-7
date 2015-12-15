@@ -1,13 +1,13 @@
 clear all; 
 clc;
 
-num = [0.2 1];
-denum = [1 1 1 1 1];
+num = [1];
+denum = [1 1 1 1];
 
 G = tf(num, denum);
 x0 = 20*ones(4, 1);
 
-options = optimset('MaxFunEvals', 150)
+options = optimset('MaxFunEvals', 1000)
 
 [xopt, fopt, flag, iter] = fminsearch(@PIDOptim, x0, options);
 P = xopt(1) 

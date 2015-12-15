@@ -1,11 +1,11 @@
 clear all; 
 clc;
 
-num = [0.2 1];
-denum = [1 1 1 1 1];
+num = [1];
+denum = [1 50];
 
-G = tf(num, denum);
-x0 = 20*ones(4, 1);
+G = tf(num, denum, 'InputDelay', 1);
+x0 = 10*ones(4, 1);
 
 options = optimset('MaxFunEvals', 150)
 
