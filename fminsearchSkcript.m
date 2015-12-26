@@ -1,8 +1,8 @@
 clear all; 
 clc;
 
-num = [0.2 1];
-denum = [1 1 1 1 1];
+num = [ 1];
+denum = [1 1];
 
 G = tf(num, denum);
 x0 = 20*ones(4, 1);

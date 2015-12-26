@@ -2,7 +2,7 @@ clear all;
 clc;
 
 num = [1];
-denum = [1 1 1];
+denum = [1 2 1];
 
 G = tf(num, denum);
 x0 = 2*ones(4, 1);
