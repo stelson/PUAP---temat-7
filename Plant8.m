@@ -1,20 +1,19 @@
 clear all; 
 clc;
 
-T3 = [0.005 0.01 0.02 0.05 0.1 0.2 0.5 2 5 10];
-options = optimset('MaxFunEvals', 20)
+alfa8 = [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 1.1];
+options = optimset('MaxFunEvals', 30);
 
-for i = 1:10;
-    num = [1];
-    denum = [T3(i)*T3(i) T3(i)*T3(i)+ 2*T3 2*T3(i) 1 1];
+for i = 1:2;
+    
+    num = [-alfa8(i) 1];
+    denum = [1 3 3 1];
     G = tf(num, denum, 'InputDelay', 1);
     
-    if T2(i) == 0.005
-        x0 = [148; 0.35; -259; 0.57];
-    elseif T2(i) == 200
-        x0 = [170; 0.2; -518; 0.32];
-    else
-        x0 = [T2(i); 1; -T2(i)/1; 1];
+    if alfa8(i) == 0.1
+        x0 = [1.6; 0.7; 0.9; 76];
+    elseif alfa8(i) == 0.2
+        x0 = [2; 0.5; 2; 120];
     end
     
     [xopt, fopt, flag, iter] = fminsearch(@PIDOptim, x0, options);
@@ -32,5 +31,4 @@ for i = 1:10;
     [t, x, y] = sim('Model.slx', 50); 
     figure(i)
     plot(t, y(:,2))
-    
 end
