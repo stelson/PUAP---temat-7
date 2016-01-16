@@ -38,7 +38,7 @@ T7 = [1 2 5 10];
 L7 = [0.01 0.02 0.05 0.1 0.3 0.5 0.7 0.9 1];
 for i = 1:4
     for j = 1:9
-        G7(i, j) = tf(T7(i),[T7(i)*(1-L7(i)) T7(i)+(1-L7(i)) 1],'InputDelay',L6(i));
+        G7(i, j) = tf(T7(i),[T7(i)*(1-L7(i)) T7(i)+(1-L7(i)) 1],'InputDelay',L7(i));
     end
 end
 

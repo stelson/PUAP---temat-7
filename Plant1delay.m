@@ -2,7 +2,7 @@ clear all;
 clc;
 
 T1 = [0.02 0.05 0.1 0.2 0.3 0.5 0.7 1 1.3 1.5 2 4 6 8 10 20 50 100 200 500 1000];
-options = optimset('MaxFunEvals', 2);
+options = optimset('MaxFunEvals', 30);
 
 for i = 1:21;
     
@@ -25,7 +25,7 @@ for i = 1:21;
     elseif T1(i) > 0 && T1(i) < 1
         x0 = 1*ones(4, 1);
     elseif T1(i) >= 1 <= 10
-        x0 = 3*ones(4, 1);
+        x0 = 5*ones(4, 1);
     else
         x0 = [T1(i); 1; -T1(i)/1; 1]
     end
@@ -44,10 +44,12 @@ for i = 1:21;
     
     [t, x, y] = sim('Model.slx', 50); 
     
+    T = num2str(T1(i));
+    S = strcat(('T = '), (' '), T);
     figure(i)
     plot(t, y(:,2), t, y(:,3))
     grid on
-    title('Output for plant')
+    title(S);
     xlabel('Time')
     ylabel('Value')
     legend('Output value', 'Set value')

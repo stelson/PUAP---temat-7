@@ -9,9 +9,9 @@ for i = 1:10;
     denum = [T3(i)*T3(i) T3(i)*T3(i)+ 2*T3 2*T3(i) 1 1];
     G = tf(num, denum, 'InputDelay', 1);
     
-    if T2(i) == 0.005
+    if T3(i) == 0.005
         x0 = [148; 0.35; -259; 0.57];
-    elseif T2(i) == 200
+    elseif T3(i) == 200
         x0 = [170; 0.2; -518; 0.32];
     else
         x0 = [T2(i); 1; -T2(i)/1; 1];
