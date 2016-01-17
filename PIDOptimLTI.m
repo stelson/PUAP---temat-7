@@ -7,4 +7,4 @@ function y = PIDOptimLTI(x)
     tic
     [t,xx,yy] = sim('ModelLTI.slx', 50);
     toc
-    y = yy(size(yy, 1),1);
+    y = yy(size(yy, 1),1)

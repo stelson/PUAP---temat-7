@@ -12,7 +12,7 @@ end
 
 T3 = [0.005 0.01 0.02 0.05 0.1 0.2 0.5 2 5 10];
 for i = 1:10;
-    G3(i) = tf(1,[T3(i)*T3(i) T3(i)*T3(i) 2*T3(i) 1 1],'InputDelay',1);
+    G3(i) = tf(1,[T3(i)*T3(i) T3(i)*T3(i)+2*T3 2*T3(i) 1 1],'InputDelay',1);
 end
 
 n4 = [ 3 4 5 6 7 8];
@@ -34,12 +34,14 @@ for i = 1:9;
     G6(i) = tf(1,[(1-L6(i)) 1 0],'InputDelay',L6(i));
 end
 
-T7 = [1 2 5 10];
+%T7 = [1 2 5 10];
+T7 = 10;
 L7 = [0.01 0.02 0.05 0.1 0.3 0.5 0.7 0.9 1];
-for i = 1:4
-    for j = 1:9
-        G7(i, j) = tf(T7(i),[T7(i)*(1-L7(i)) T7(i)+(1-L7(i)) 1],'InputDelay',L7(i));
-    end
+for i = 1:9
+    G7(i) = tf(T7,[T7*(1-L7(i)) T7+(1-L7(i)) 1], 'InputDelay', L7(i));
+%     for j = 1:9
+%         G7(i, j) = tf(T7(i),[T7(i)*(1-L7(i)) T7(i)+(1-L7(i)) 1],'InputDelay',L7(i));
+%     end
 end
 
 alfa8 = [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 1.1];

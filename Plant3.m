@@ -6,15 +6,13 @@ options = optimset('MaxFunEvals', 20)
 
 for i = 1:10;
     num = [1];
-    denum = [T3(i)*T3(i) T3(i)*T3(i)+ 2*T3 2*T3(i) 1 1];
+    denum = [T3(i)*T3(i) T3(i)*T3(i)+2*T3 2*T3(i) 1 1];
     G = tf(num, denum, 'InputDelay', 1);
     
     if T3(i) == 0.005
         x0 = [148; 0.35; -259; 0.57];
-    elseif T3(i) == 200
+    elseif T3(i) == 0.01
         x0 = [170; 0.2; -518; 0.32];
-    else
-        x0 = [T2(i); 1; -T2(i)/1; 1];
     end
     
     [xopt, fopt, flag, iter] = fminsearch(@PIDOptim, x0, options);
@@ -29,8 +27,16 @@ for i = 1:10;
     D1(i) = xopt(3)
     N1(i) = xopt(4)
     
-    [t, x, y] = sim('Model.slx', 50); 
+    [t, x, y] = sim('Model.slx', 50);
+    
+    T = num2str(T3(i));
+    S = strcat(('T = '), (' '), T);
     figure(i)
-    plot(t, y(:,2))
+    plot(t, y(:,2), t, y(:,3))
+    grid on
+    title(S);
+    xlabel('Time')
+    ylabel('Value')
+    legend('Output value', 'Set value')
     
 end

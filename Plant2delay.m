@@ -61,6 +61,9 @@ for i = 1:21;
     
     [t, x, y] = sim('Model.slx', 50); 
     
+    Fmin(i) = y(size(y, 1),1);
+    PID = [P1' I1' D1' N1' Fmin'];
+    
     T = num2str(T2(i));
     S = strcat(('T = '), (' '), T);
     

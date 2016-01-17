@@ -44,6 +44,9 @@ for i = 1:9;
     
     [t, x, y] = sim('ModelLTI.slx', 50); 
     
+    Fmin(i) = y(size(y, 1),1);
+    PID = [P1' I1' D1' N1' Fmin'];
+    
     T = num2str(alfa5(i));
     S = strcat(('Alpha = '), (' '), T);
     figure(i)

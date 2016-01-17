@@ -2,9 +2,9 @@ clear all;
 clc;
 
 L6 = [0.01 0.02 0.05 0.1 0.3 0.5 0.7 0.9 1];
-options = optimset('MaxFunEvals', 10);
+options = optimset('MaxFunEvals', 20);
 
-for i = 1:9;
+for i = 9:9;
 
     G = tf(1,[(1-L6(i)) 1 0],'InputDelay', L6(i));
     
@@ -41,6 +41,9 @@ for i = 1:9;
     N1(i) = xopt(4)
     
     [t, x, y] = sim('ModelLTI.slx', 50); 
+    
+    Fmin(i) = y(size(y, 1),1);
+    PID = [P1' I1' D1' N1' Fmin'];
     
     T = num2str(L6(i));
     S = strcat(('L = '), (' '), T);

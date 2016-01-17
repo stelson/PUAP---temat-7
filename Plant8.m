@@ -2,7 +2,7 @@ clear all;
 clc;
 
 alfa8 = [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 1.1];
-options = optimset('MaxFunEvals', 100);
+options = optimset('MaxFunEvals', 10);
 
 for i = 1:11;
     
@@ -47,6 +47,8 @@ for i = 1:11;
     N1(i) = xopt(4)
     
     [t, x, y] = sim('ModelLTI.slx', 50); 
+    
+    Fmin = y(size(y, 1),1);
     
     T = num2str(alfa8(i));
     S = strcat(('Alpha = '), (' '), T);
